@@ -1,7 +1,7 @@
 
 # EventEase 
 
-- A event management web application that allows users to view various events, and register for them or add to their wishlist.
+- An event management web application that allows users to view various events, and register for them or add to their wishlist.
 - users can view the events list after they have logged in (or register, if the dont have an account).
 - the login process is authenticated, and the passwords are encrypted, providing security to the data being entered.
 - Admins have the power to add, delete, and modify(work in progress) the events.
