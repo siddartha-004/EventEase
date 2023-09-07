@@ -1,0 +1,58 @@
+/* navbar */
+.navbar-container {
+    background: rgba(153, 153, 153, 0.445) !important; 
+    backdrop-filter: blur(5px) !important; 
+}
+
+
+/* homepage */
+.box{
+    border-radius: 2px;
+    box-shadow: 0 0 100px rgba(131, 108, 153, 0.103);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 2rem 8rem;
+    padding: 2rem;
+}
+
+.box .text{
+    padding: 20px;
+}
+
+.box .image{
+    padding: 20px;
+    border-radius: 2rem;
+}
+
+
+.home-register{
+    color: black;
+    text-align: center;
+    padding: 20px 0px;
+}
+
+/* users */
+.userpage-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 1rem 5rem;
+    padding: 2rem;
+    
+}
+
+.eventlist-container{
+    overflow-y: auto; 
+    height:400px;
+}
+
+/*Footer*/
+.footer-container{
+    min-height: 20vh;
+    position: relative;
+}
+
+.event-footer{
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
+  }
