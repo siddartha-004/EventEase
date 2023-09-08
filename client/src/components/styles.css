@@ -1,3 +1,18 @@
+/*scrollbar*/
+::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background:none;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #319795;
+    border-radius: 10px;
+  }
+
+
 /* navbar */
 .navbar-container {
     background: rgba(153, 153, 153, 0.445) !important; 

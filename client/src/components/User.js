@@ -27,7 +27,7 @@ function User() {
       <div className='eventlist-container'>
       {Array.isArray(eventCard) ? (
           eventCard.map((val) => (
-            <Events data={val} key={val.id} />
+            <Events data={val} key={val.id} setEventCard={setEventCard}/>
           ))
         ) : (
           <Text>Loading events ...</Text>
