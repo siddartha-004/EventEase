@@ -9,9 +9,9 @@
 
 ## Tech Stack
 
-**Client:** React, Chakra UI, ContextAPI
+**Client:** ReactJS, Chakra UI, ContextAPI
 
-**Server:** Node, Express, MongoDB
+**Server:** NodeJS, Express, MongoDB
 
 
 ## Steps to run
@@ -54,9 +54,10 @@ To view **Admin portal**, log in with the following credentials :
 
 homepage in both light and dark mode before logging in :
 
-![localhost_3000_ (1)](https://github.com/saijahnavir/GDSC-Event-Management/assets/105307350/75e61787-e2b3-4de0-b2e7-89546a8316cd)
+![localhost_3000_ (3)](https://github.com/saijahnavir/GDSC-Event-Management/assets/105307350/7dff8f0e-30ef-4d48-9c1c-0c7825e9179d)
 
-![localhost_3000_ (2)](https://github.com/saijahnavir/GDSC-Event-Management/assets/105307350/f632a5ba-d961-4d66-9d90-7a883a3f6ec7)
+![localhost_3000_ (4)](https://github.com/saijahnavir/GDSC-Event-Management/assets/105307350/e68c7082-28ba-42ab-bd82-81f3721d0362)
+
 
 Registration and login pages :
 ![Screenshot 2023-09-08 032728](https://github.com/saijahnavir/GDSC-Event-Management/assets/105307350/21d4b554-b359-4ecc-b54c-787f0146a83e)
