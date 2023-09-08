@@ -1,4 +1,7 @@
 const express = require('express');
+const dotenv = require('dotenv');
+
+
 
 const app = express();
 app.use(express.json());
@@ -7,7 +10,12 @@ const PORT = 8000
 app.listen(PORT, () => console.log(`web server listening on port ${PORT} ...`))
 
 const mclient = require('mongodb').MongoClient;
-mclient.connect('mongodb://0.0.0.0:27017/')
+
+dotenv.config();
+
+const connectionString =process.env.ATLAS_URI||'';
+
+mclient.connect(connectionString)
 .then((dbRef) => {
     const dbObj = dbRef.db("eventDB")
     const userCollectionObj = dbObj.collection("userscollection")

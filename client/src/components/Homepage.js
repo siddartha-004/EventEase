@@ -39,7 +39,7 @@ function Homepage() {
         </div>
         <div className='box'>
           <div className='image'>
-          <img src="https://o.remove.bg/downloads/631a6139-56c8-4d3a-9f8e-fe74d055a7bb/image-removebg-preview.png" alt='' />
+          <img src="https://d1jj76g3lut4fe.cloudfront.net/processed/with_watermark/BP22949ULccIa13hWu.png?Expires=1691848689&Signature=ifaWvRwTZP63ZA9k21-CxCX3xx9HCuGmesoscTyfvFJlFbTfZ8K1U6cLIGfbnLdzzsfl5Qc7KkMas2E8F6SBtRR4~BXQMnE~e4GtrpU8gCJxjr04nh2RFGfqB~wJ5ThK~CAEmsVHIg0NdclgTh7aaua1dxbsXoqmhSZKbFYUhhjO-zk~HFlU0Bc6PXruhFwWKgcl2P~neFKA9-O-UBwzlQO4U4a3OQjZLZTGqMQlUQJmQL35RT~iw4FFzEZMYUUnMu44WMnkUOcYqsPK27k9AQz-Xsl7gnjWIVgwNp8Kr-nKmg2iLxJhtH8Jaz2x3gIzJlDJmZ8YxeE~NAKYAmdBcA__&Key-Pair-Id=K2YEDJLVZ3XRI" alt='' />
           </div>
           <div className='text'>
           <Text fontSize="3xl">At EventEase,</Text>
@@ -58,7 +58,7 @@ function Homepage() {
                   }} fontWeight={'thin'}><NavLink to="/register">Register</NavLink></Button>
         </div>
         <div>
-          <img src="https://o.remove.bg/downloads/e6a067ac-b1c2-4d76-85b5-9f5743b22f21/image-removebg-preview.png" alt=''/>
+          <img src="https://cdni.iconscout.com/illustration/premium/thumb/user-registration-4489364-3723271.png" alt=''/>
         </div>
         </div>)}
         
