@@ -89,7 +89,7 @@ export default function Login() {
                   onClick={handleSubmit(handleLogin)}>
                   Sign in
                 </Button>
-                {loginErr && loginErr.length !== 0 && <p className='text-danger fw-bold fs-6'>{loginErr}</p>}
+                {/* {loginErr && loginErr.length !== 0 && <p className='text-danger fw-bold fs-6'>{loginErr}</p>} */}
 
 
                 <Text color={'teal.400'} fontSize="xl" textAlign="center">
