@@ -1,11 +1,13 @@
-import React,{useContext} from 'react'
+import React,{useContext,useEffect} from 'react'
 import './styles.css'
+import axios from 'axios'
 import { Button, Text,Alert,AlertIcon,AlertTitle,AlertDescription} from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 import { LoginContext } from '../contexts/LoginContext';
 
 function Homepage() {
   let [, , userLoginStatus, ,] = useContext(LoginContext);
+ 
   return (
     <div className='home-container'>
       {userLoginStatus ? null : 

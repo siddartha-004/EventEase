@@ -1,4 +1,4 @@
-import React,{ useContext,useState } from 'react'
+import React,{ useContext,useState,useEffect } from 'react'
 import { Card, CardHeader, CardBody, CardFooter,Heading,Button,Text,Stack, Box, StackDivider,IconButton,ButtonGroup, Input} from '@chakra-ui/react'
 import { DeleteIcon,EditIcon} from '@chakra-ui/icons'
 import { LoginContext } from '../contexts/LoginContext';
@@ -19,7 +19,7 @@ function Events(props) {
 
     const handleDelete = (id) =>{
         console.log(id)
-        axios.delete(`http://localhost:8000/event-api/delete-event/${id}`);
+        axios.delete(`api/Student/deleteEvent?id=${id}`);
     }
 
     const handleEdit = (id) => {
@@ -30,12 +30,12 @@ function Events(props) {
 
       const handleSave = (data) => {
         // console.log(data)
-        const eventDataToUpdate = { _id: props.data._id, ...data,};
+        const eventDataToUpdate = { id: props.data.id, ...data,};
         console.log(eventDataToUpdate)
-        axios.put("http://localhost:8000/event-api/edit-event",eventDataToUpdate);
+        axios.put("/api/Student/editevent",eventDataToUpdate);
         
         props.setEventCard((prevEventCard)=>{
-            const updatedIndex = prevEventCard.findIndex((event) => event._id === eventDataToUpdate._id);
+            const updatedIndex = prevEventCard.findIndex((event) => event.id === eventDataToUpdate.id);
             const updatedEventCard = [...prevEventCard];
             updatedEventCard[updatedIndex] = eventDataToUpdate;
             return updatedEventCard;
@@ -67,9 +67,9 @@ function Events(props) {
                 {/* rendering admin features */}
                 {user.role==="admin" ? (
                     <ButtonGroup size='md' isAttached variant='outline' float={'right'}>
-                        <IconButton  colorScheme='red' fontSize='20px' icon={<DeleteIcon />} onClick={() => handleDelete(props.data._id)}
+                        <IconButton  colorScheme='red' fontSize='20px' icon={<DeleteIcon />} onClick={() => handleDelete(props.data.id)}
                     />
-                        <IconButton colorScheme='yellow' icon={<EditIcon />} onClick={() => handleEdit(props.data._id)}/>
+                        <IconButton colorScheme='yellow' icon={<EditIcon />} onClick={() => handleEdit(props.data.id)}/>
                     </ButtonGroup>
                 ):null}
                 </Heading>

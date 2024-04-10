@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const app = express();
 app.use(express.json());
 
-const PORT = 8000
+const PORT = 3000
 app.listen(PORT, () => console.log(`web server listening on port ${PORT} ...`))
 
 const mclient = require('mongodb').MongoClient;
@@ -13,7 +13,7 @@ const mclient = require('mongodb').MongoClient;
 
 dotenv.config();
 
-const connectionString =process.env.ATLAS_URI||'';
+const connectionString ='mongodb://127.0.0.1:27017'
 
 mclient.connect(connectionString)
 .then((dbRef) => {

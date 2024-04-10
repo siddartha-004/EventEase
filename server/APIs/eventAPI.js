@@ -50,7 +50,7 @@ eventApp.delete('/delete-event/:id', expressAsyncHandler(async (req,res) => {
 ))
 
 //updating events 
-eventApp.put('/edit-event', expressAsyncHandler(async (req,res) => {
+eventApp.put('/edit-event23', expressAsyncHandler(async (req,res) => {
     const eventCollectionObj = req.app.get('eventCollectionObj')
     modifiedEvent = req.body
     

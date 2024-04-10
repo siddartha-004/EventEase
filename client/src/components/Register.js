@@ -22,7 +22,7 @@ export default function Register() {
 
   let addNewUser = (newUser) => {
     newUser.role="user";
-    axios.post("http://localhost:8000/user-api/register", newUser)
+    axios.post("http://localhost:3000/user-api/register", newUser)
     .then((response) => {
       if(response.status===201){
         navigate('/login')

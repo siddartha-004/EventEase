@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {Flex, Box,FormControl,FormLabel,Input,Checkbox,Stack,Button,Heading,Text,useColorModeValue,Alert,
   AlertIcon,} from '@chakra-ui/react';
 import {useForm} from 'react-hook-form'
@@ -26,12 +27,12 @@ export default function Login() {
   }
 
   let navigate=useNavigate();
-
+  
   useEffect(() => {
     if(token){
       navigate("/events")
     }
-  },)
+  })
 
   return (
     <Flex

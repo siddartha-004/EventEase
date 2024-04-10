@@ -11,7 +11,7 @@ function UserLoginStore({children}) {
    
     const logInUser = (userCredentialsObj) => {
 
-        axios.post("http://localhost:8000/user-api/login", userCredentialsObj)
+        axios.post("http://localhost:3000/user-api/login", userCredentialsObj)
         
         .then(response => {
             

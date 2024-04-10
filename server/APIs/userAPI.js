@@ -30,10 +30,11 @@ userApp.post('/register', expressAsyncHandler(async (req,res) => {
 
 //user login 
 userApp.post('/login', expressAsyncHandler(async (req,res) => {
+ 
     const userCollectionObj = req.app.get('userCollectionObj')
     const logUser = req.body
 
-    console.log(req.headers)
+ 
     let userOfDB = await userCollectionObj.findOne({email: logUser.email})
 
     if( userOfDB == null) {
