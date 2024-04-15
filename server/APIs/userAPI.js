@@ -10,6 +10,28 @@ userApp.use(express.json())
 const cors = require('cors');
 userApp.use(cors());
 
+
+// Get user details by user ID
+userApp.get('/user/:userId', expressAsyncHandler(async (req, res) => {
+    const userCollectionObj = req.app.get('userCollectionObj');
+    const userId = req.params.userId;
+
+    try {
+        const user = await userCollectionObj.findOne({userId: userId });
+        if (!user) {
+            res.status(404).send({ message: 'User not found' });
+        } else {
+            // Exclude sensitive information like password before sending user data
+            const { password, ...userData } = user;
+            res.status(200).send({ user: userData });
+        }
+    } catch (error) {
+        console.error('Error fetching user details:', error);
+        res.status(500).send({ message: 'Internal server error' });
+    }
+}));
+
+
 //register user
 userApp.post('/register', expressAsyncHandler(async (req,res) => {
     const userCollectionObj = req.app.get('userCollectionObj')
