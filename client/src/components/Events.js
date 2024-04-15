@@ -1,13 +1,15 @@
 import React,{ useContext,useState,useEffect } from 'react'
-import { Card, CardHeader, CardBody, CardFooter,Heading,Button,Text,Stack, Box, StackDivider,IconButton,ButtonGroup, Input} from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter,Heading,Button,Flex,ModalFooter,Text,Stack, Box, Image, Divider, StackDivider,IconButton,ButtonGroup, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, FormControl, FormLabel,  Input, Select, Checkbox} from '@chakra-ui/react'
 import { DeleteIcon,EditIcon} from '@chakra-ui/icons'
 import { LoginContext } from '../contexts/LoginContext';
 import axios from 'axios';
+import './styles.css'
 import { useForm, Controller } from 'react-hook-form';
 
 function Events(props) {
     let [user, , , , ]= useContext(LoginContext);
     const [showEditComponent, setShowEditComponent] = useState(false);
+    const [selectedCourseDuration, setSelectedCourseDuration] = useState('');
 
     const {
         handleSubmit,
@@ -15,11 +17,17 @@ function Events(props) {
         reset,
         formState: { errors },
     } = useForm();
-    
+    const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
 
     const handleDelete = (id) =>{
         console.log(id)
         axios.delete(`api/Student/deleteEvent?id=${id}`);
+    }
+    const handleFormSubmit=(data)=>{
+        console.log(data)
     }
 
     const handleEdit = (id) => {
@@ -129,7 +137,171 @@ function Events(props) {
                 {showEditComponent?(<Button type="submit" variant='outline' mr={'30px'} colorScheme='green' onClick={handleSubmit(handleSave)}>
                 Save
               </Button>):null}
-                <Button variant='solid' colorScheme='teal'> Register </Button>
+                <Button variant='solid' colorScheme='teal' onClick={handleOpen}> Register </Button>
+                <Modal isOpen={isOpen} onClose={handleClose} size="full">
+        <ModalOverlay />
+        <ModalContent className="custom-modal" >
+            <Box display="flex" alignItems="center" ml={7}>
+        <Box>
+    <Image src="https://turinghut.org/static/ac9fc244821c2fd626d0bf51b1951514/862e9/turing-cup2023.jpg" boxSize="50px" objectFit="cover" borderRadius="md" />
+  </Box>
+  <Box ml={4}>
+    <Heading as="h2" size="lg" color="teal.500" mb={4} py={6}>{props.data.name}</Heading>
+  </Box>
+  </Box>
+       
+        <Divider />
+          <ModalHeader ml={6}>Candidate Details</ModalHeader>
+          <Divider />
+          <ModalCloseButton />
+          <ModalBody ml={6}>
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={4}>
+                <FormControl id="email" isRequired>
+                  <FormLabel>Email address</FormLabel>
+                  <Input type="email" placeholder="Enter your email" />
+                </FormControl>
+                <FormControl id="mobile" isRequired>
+                  <FormLabel>Mobile</FormLabel>
+                  <Input type="tel" placeholder="Enter your mobile number" />
+                </FormControl>
+                <FormControl id="firstName" isRequired>
+                  <FormLabel>First Name</FormLabel>
+                  <Input type="text" placeholder="Enter your first name" />
+                </FormControl>
+                <FormControl id="lastName" isRequired>
+                  <FormLabel>Last Name</FormLabel>
+                  <Input type="text" placeholder="Enter your last name" />
+                </FormControl>
+                <FormControl id="gender" isRequired>
+                  <FormLabel>Gender</FormLabel>
+                  <Select placeholder="Select your gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </Select>
+                </FormControl>
+                <FormControl id="instituteName" isRequired>
+                  <FormLabel>Institute Name</FormLabel>
+                  <Input type="text" placeholder="Enter your institute name" />
+                </FormControl>
+                <FormControl id="type" isRequired>
+                  <FormLabel>Type</FormLabel>
+                  <Select placeholder="Select type">
+                    <option value="student">Student</option>
+                    <option value="faculty">Faculty</option>
+                    <option value="staff">Staff</option>
+                  </Select>
+                </FormControl>
+                <FormControl id="course" isRequired>
+                  <FormLabel>Course</FormLabel>
+                  <Input type="text" placeholder="Enter your course" />
+                </FormControl>
+                <FormControl id="courseSpecialization" isRequired>
+                  <FormLabel>Course Specialization</FormLabel>
+                  <Input type="text" placeholder="Enter your course specialization" />
+                </FormControl>
+                {/* <FormControl id="courseDuration" isRequired>
+                                    <FormLabel>Course Duration</FormLabel>
+                                    <Stack spacing={4}>
+                                        <Box
+                                            borderWidth="1px"
+                                            borderRadius="lg"
+                                            overflow="hidden"
+                                            cursor="pointer"
+                                            borderColor={selectedCourseDuration === '4 years' ? 'teal.500' : 'gray.200'}
+                                            bg={selectedCourseDuration === '4 years' ? 'teal.50' : 'white'}
+                                            p={4}
+                                            onClick={() => setSelectedCourseDuration('4 years')}
+                                        >
+                                            <Heading size="md">4 Years</Heading>
+                                            
+                                        </Box>
+                                        <Box
+                                            borderWidth="1px"
+                                            borderRadius="lg"
+                                            overflow="hidden"
+                                            cursor="pointer"
+                                            borderColor={selectedCourseDuration === '5 years' ? 'teal.500' : 'gray.200'}
+                                            bg={selectedCourseDuration === '5 years' ? 'teal.50' : 'white'}
+                                            p={4}
+                                            onClick={() => setSelectedCourseDuration('5 years')}
+                                        >
+                                            <Heading size="md">5 Years</Heading>
+                                            
+                                        </Box>
+                                        
+                                    </Stack>
+                                </FormControl> */}
+                {/* <FormControl id="courseDuration" isRequired>
+                  <FormLabel>Course Duration</FormLabel>
+                  <Input type="text" placeholder="Enter your course duration" />
+                </FormControl> */}
+                <FormControl id="courseDuration" isRequired>
+    <FormLabel>Course Duration</FormLabel>
+    <Flex>
+        <Box
+          
+            width="120px"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            cursor="pointer"
+            borderColor={selectedCourseDuration === '4 years' ? 'teal.500' : 'gray.200'}
+            bg={selectedCourseDuration === '4 years' ? 'teal.50' : 'white'}
+            p={4}
+            onClick={() => setSelectedCourseDuration('4 years')}
+        >
+            <Heading size="md" color={selectedCourseDuration === '4 years' ? 'teal.500' : 'gray.600'}>4 Years</Heading>
+            
+        </Box>
+        <Box
+           
+            width="120px"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            cursor="pointer"
+            borderColor={selectedCourseDuration === '5 years' ? 'teal.500' : 'gray.200'}
+            bg={selectedCourseDuration === '5 years' ? 'teal.50' : 'white'}
+            p={4}
+            onClick={() => setSelectedCourseDuration('5 years')}
+            ml={4} // Add margin between the cards
+        >
+            <Heading size="md" color={selectedCourseDuration === '5 years' ? 'teal.500' : 'gray.600'}>5 Years</Heading>
+            
+        </Box>
+    </Flex>
+</FormControl>
+
+                <FormControl id="differentlyAbled">
+                  <Checkbox>Differently Abled</Checkbox>
+                </FormControl>
+                <FormControl id="countryOfResidence" isRequired>
+                  <FormLabel>Country of Residence</FormLabel>
+                  <Input type="text" placeholder="Enter your country of residence" />
+                </FormControl>
+                <FormControl id="agreeToTerms" isRequired>
+                  <Checkbox>
+                    I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer">terms and conditions</a>.
+                  </Checkbox>
+                </FormControl>
+                {/* <Button mt={4} colorScheme="teal" type="submit">
+                  Register
+                </Button> */}
+              </Stack>
+            </form>
+          </ModalBody>
+          <ModalFooter>
+    <Button colorScheme="blue" mr={3} onClick={handleClose}>
+      Back
+    </Button>
+    <Button colorScheme="teal" onClick={handleSubmit(handleFormSubmit)}>
+      Submit
+    </Button>
+  </ModalFooter>
+        </ModalContent>
+      </Modal>
                 <Button variant='outline' colorScheme='red' ml={'30px'}> ❤ WishList</Button>
             </CardFooter>
         </Card>
