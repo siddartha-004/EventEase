@@ -34,6 +34,7 @@ userApp.get('/user/:userId', expressAsyncHandler(async (req, res) => {
 
 //register user
 userApp.post('/register', expressAsyncHandler(async (req,res) => {
+    
     const userCollectionObj = req.app.get('userCollectionObj')
     const newUser = req.body 
     let checkUser = await userCollectionObj.findOne({email:newUser.email})

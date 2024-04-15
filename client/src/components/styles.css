@@ -71,3 +71,6 @@
     bottom: 0;
     width: 100%;
   }
+  .custom-modal {
+    width: 1000px; /* Adjust this value as needed */
+  }
