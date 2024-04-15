@@ -16,13 +16,13 @@ function User() {
 
   let [user, , , , ]= useContext(LoginContext);
   useEffect(() =>{
-    console.log("User Role:", user.role);
-    axios.get("api/Student/GetAllEvents")
+    // console.log("User Role:", user.role);
+    axios.get("http://localhost:3000/event-api/get-event")
     .then((response)=>{
-      //console.log(response)
-      setEventCard(response.data)
+      console.log(response.data.payload)
+      setEventCard(response.data.payload)
     })
-  });
+  },[]);
  
   
   return (

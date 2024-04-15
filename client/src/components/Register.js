@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import {Flex, Box, FormControl,FormLabel,Input,InputGroup, InputRightElement,Stack,Button,Heading,Text,useColorModeValue} from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
@@ -21,6 +22,8 @@ export default function Register() {
   } = useForm();
 
   let addNewUser = (newUser) => {
+    const uuid = uuidv4();
+    newUser.userId=uuid;
     newUser.role="user";
     axios.post("http://localhost:3000/user-api/register", newUser)
     .then((response) => {
