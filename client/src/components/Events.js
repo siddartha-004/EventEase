@@ -13,7 +13,6 @@ function Events(props) {
     const [selectedCourseDuration, setSelectedCourseDuration] = useState('');
 
     useEffect(() => {
-        
         if (user) {
             setUserObj(user);
         } else {
@@ -21,12 +20,13 @@ function Events(props) {
         }
     }, [user, getUser]);
 console.log(user,userObj)
-    const {
+    const {register,
         handleSubmit,
         control,
         reset,
         formState: { errors },
     } = useForm();
+    
     const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => setIsOpen(true);
@@ -37,7 +37,8 @@ console.log(user,userObj)
         axios.delete(`api/Student/deleteEvent?id=${id}`);
     }
     const handleFormSubmit=(data)=>{
-        console.log(data)
+      const formData = { ...data, courseDuration: selectedCourseDuration };
+        console.log(formData)
     }
 
     const handleEdit = (id) => {
@@ -168,23 +169,23 @@ console.log(user,userObj)
                   <Stack spacing={4}>
                     <FormControl id="email" isRequired>
                       <FormLabel>Email address</FormLabel>
-                      <Input type="email" placeholder="Enter your email" />
+                      <Input type="email" placeholder="Enter your email" id="email" {...register("email")}/>
                     </FormControl>
                     <FormControl id="mobile" isRequired>
                       <FormLabel>Mobile</FormLabel>
-                      <Input type="tel" placeholder="Enter your mobile number" />
+                      <Input type="tel" placeholder="Enter your mobile number" id="mobile"  {...register("mobile")}/>
                     </FormControl>
                     <FormControl id="firstName" isRequired>
                       <FormLabel>First Name</FormLabel>
-                      <Input type="text" placeholder="Enter your first name" />
+                      <Input type="text" placeholder="Enter your first name" id="firstName" {...register("firstName")}/>
                     </FormControl>
                     <FormControl id="lastName" isRequired>
                       <FormLabel>Last Name</FormLabel>
-                      <Input type="text" placeholder="Enter your last name" />
+                      <Input type="text" placeholder="Enter your last name" id="lastName" {...register("lastName")} />
                     </FormControl>
                     <FormControl id="gender" isRequired>
                       <FormLabel>Gender</FormLabel>
-                      <Select placeholder="Select your gender">
+                      <Select placeholder="Select your gender" {...register("gender", { required: "Gender is required" })}>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="other">Other</option>
@@ -192,11 +193,11 @@ console.log(user,userObj)
                     </FormControl>
                     <FormControl id="instituteName" isRequired>
                       <FormLabel>Institute Name</FormLabel>
-                      <Input type="text" placeholder="Enter your institute name" />
+                      <Input type="text" placeholder="Enter your institute name" id="instituteName" {...register("instituteName", { required: "Institute name is required" })}/>
                     </FormControl>
                     <FormControl id="type" isRequired>
                       <FormLabel>Type</FormLabel>
-                      <Select placeholder="Select type">
+                      <Select placeholder="Select type" id="type" {...register("type", { required: "Type is required" })}>
                         <option value="student">Student</option>
                         <option value="faculty">Faculty</option>
                         <option value="staff">Staff</option>
@@ -204,48 +205,12 @@ console.log(user,userObj)
                     </FormControl>
                     <FormControl id="course" isRequired>
                       <FormLabel>Course</FormLabel>
-                      <Input type="text" placeholder="Enter your course" />
+                      <Input type="text" placeholder="Enter your course" id="course" {...register("course", { required: "Course is required" })}  />
                     </FormControl>
                     <FormControl id="courseSpecialization" isRequired>
                       <FormLabel>Course Specialization</FormLabel>
-                      <Input type="text" placeholder="Enter your course specialization" />
+                      <Input type="text" placeholder="Enter your course specialization" id="courseSpecialization" {...register("courseSpecialization", { required: "Course specialization is required" })}/>
                     </FormControl>
-                    {/* <FormControl id="courseDuration" isRequired>
-                                        <FormLabel>Course Duration</FormLabel>
-                                        <Stack spacing={4}>
-                                            <Box
-                                                borderWidth="1px"
-                                                borderRadius="lg"
-                                                overflow="hidden"
-                                                cursor="pointer"
-                                                borderColor={selectedCourseDuration === '4 years' ? 'teal.500' : 'gray.200'}
-                                                bg={selectedCourseDuration === '4 years' ? 'teal.50' : 'white'}
-                                                p={4}
-                                                onClick={() => setSelectedCourseDuration('4 years')}
-                                            >
-                                                <Heading size="md">4 Years</Heading>
-                                                
-                                            </Box>
-                                            <Box
-                                                borderWidth="1px"
-                                                borderRadius="lg"
-                                                overflow="hidden"
-                                                cursor="pointer"
-                                                borderColor={selectedCourseDuration === '5 years' ? 'teal.500' : 'gray.200'}
-                                                bg={selectedCourseDuration === '5 years' ? 'teal.50' : 'white'}
-                                                p={4}
-                                                onClick={() => setSelectedCourseDuration('5 years')}
-                                            >
-                                                <Heading size="md">5 Years</Heading>
-                                                
-                                            </Box>
-                                            
-                                        </Stack>
-                                    </FormControl> */}
-                    {/* <FormControl id="courseDuration" isRequired>
-                      <FormLabel>Course Duration</FormLabel>
-                      <Input type="text" placeholder="Enter your course duration" />
-                    </FormControl> */}
                     <FormControl id="courseDuration" isRequired>
         <FormLabel>Course Duration</FormLabel>
         <Flex>
@@ -281,17 +246,19 @@ console.log(user,userObj)
                 
             </Box>
         </Flex>
+        <input type="hidden" {...register("courseDuration", { value: selectedCourseDuration })} />
+
     </FormControl>
     
                     <FormControl id="differentlyAbled">
-                      <Checkbox>Differently Abled</Checkbox>
+                      <Checkbox {...register("differentlyAbled")}>Differently Abled</Checkbox>
                     </FormControl>
                     <FormControl id="countryOfResidence" isRequired>
                       <FormLabel>Country of Residence</FormLabel>
-                      <Input type="text" placeholder="Enter your country of residence" />
+                      <Input type="text" placeholder="Enter your country of residence" {...register("countryOfResidence", { required: "Country of residence is required" })}/>
                     </FormControl>
                     <FormControl id="agreeToTerms" isRequired>
-                      <Checkbox>
+                      <Checkbox {...register("agreeToTerms", { required: "You must agree to the terms and conditions" })}>
                         I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer">terms and conditions</a>.
                       </Checkbox>
                     </FormControl>
