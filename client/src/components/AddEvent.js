@@ -99,9 +99,12 @@ function AddEvent() {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <p>For test </p>
 
     </div>
   )
 }
+
+
 
 export default AddEvent
