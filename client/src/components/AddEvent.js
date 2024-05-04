@@ -18,10 +18,11 @@ function AddEvent() {
       let addNewEvent =(newEvent)=>{
         console.log("posting event...")
         newEvent.id=newEvent.name
-        console.log(newEvent)
-        axios.post("http://localhost:3000/event-api/post-event", newEvent).then((response) => {
+        newEvent.registered=null
+        console.log(newEvent,"lllll")
+        axios.post("api/Student/postevent", newEvent).then((response) => {
           console.log(response.status)
-        if(response.status===201){
+        if(response.status===200){
             console.log("event posted!");
             reset();
         }

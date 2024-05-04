@@ -23,11 +23,13 @@ export default function Register() {
 
   let addNewUser = (newUser) => {
     const uuid = uuidv4();
-    newUser.userId=uuid;
+    newUser.id=uuid;
     newUser.role="user";
-    axios.post("http://localhost:3000/user-api/register", newUser)
+    console.log(newUser)
+    axios.post("api/Student/register", newUser)
     .then((response) => {
-      if(response.status===201){
+      if(response.status===200){
+        console.log(response)
         navigate('/login')
         setErr("")
       }

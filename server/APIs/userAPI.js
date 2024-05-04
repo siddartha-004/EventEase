@@ -13,6 +13,7 @@ userApp.use(cors());
 
 // Get user details by user ID
 userApp.get('/user/:userId', expressAsyncHandler(async (req, res) => {
+    console.log("hello")
     const userCollectionObj = req.app.get('userCollectionObj');
     const userId = req.params.userId;
 
@@ -33,51 +34,51 @@ userApp.get('/user/:userId', expressAsyncHandler(async (req, res) => {
 
 
 //register user
-userApp.post('/register', expressAsyncHandler(async (req,res) => {
+// userApp.post('/register', expressAsyncHandler(async (req,res) => {
     
-    const userCollectionObj = req.app.get('userCollectionObj')
-    const newUser = req.body 
-    let checkUser = await userCollectionObj.findOne({email:newUser.email})
-    if(checkUser!=null){
-        res.status(200).send({message : "An account already exists with this email. Please try logging in."})
-    }
-    else{
-        let hashedPassword = await bcryptjs.hash(newUser.password,5)
-        newUser.password = hashedPassword;
+//     const userCollectionObj = req.app.get('userCollectionObj')
+//     const newUser = req.body 
+//     let checkUser = await userCollectionObj.findOne({email:newUser.email})
+//     if(checkUser!=null){
+//         res.status(200).send({message : "An account already exists with this email. Please try logging in."})
+//     }
+//     else{
+//         let hashedPassword = await bcryptjs.hash(newUser.password,5)
+//         newUser.password = hashedPassword;
 
-        await userCollectionObj.insertOne(newUser);
-        res.status(201).send({message:"user has been registered"})
-    }
-}
-))
+//         await userCollectionObj.insertOne(newUser);
+//         res.status(201).send({message:"user has been registered"})
+//     }
+// }
+// ))
 
 //user login 
-userApp.post('/login', expressAsyncHandler(async (req,res) => {
+// userApp.post('/login', expressAsyncHandler(async (req,res) => {
  
-    const userCollectionObj = req.app.get('userCollectionObj')
-    const logUser = req.body
+//     const userCollectionObj = req.app.get('userCollectionObj')
+//     const logUser = req.body
 
  
-    let userOfDB = await userCollectionObj.findOne({email: logUser.email})
+//     let userOfDB = await userCollectionObj.findOne({email: logUser.email})
 
-    if( userOfDB == null) {
-        res.status(200).send({message : 'Invalid email.'})
-    }
-    else{
-       let isEqual = await bcryptjs.compare(logUser.password, userOfDB.password)
-       if(isEqual){
-        let jwtToken = jwt.sign({username:userOfDB.username},'abcdef',{expiresIn:"7d"})
+//     if( userOfDB == null) {
+//         res.status(200).send({message : 'Invalid email.'})
+//     }
+//     else{
+//        let isEqual = await bcryptjs.compare(logUser.password, userOfDB.password)
+//        if(isEqual){
+//         let jwtToken = jwt.sign({username:userOfDB.username},'abcdef',{expiresIn:"7d"})
 
-        delete userOfDB.password
-        res.status(200).send({message : "ok", token:jwtToken, user: userOfDB})
+//         delete userOfDB.password
+//         res.status(200).send({message : "ok", token:jwtToken, user: userOfDB})
         
-       }
-       else{
-        res.status(200).send({message : "Invalid password."})
-       }
-    }
+//        }
+//        else{
+//         res.status(200).send({message : "Invalid password."})
+//        }
+//     }
 
-}))
+// }))
 
 
 module.exports=userApp;

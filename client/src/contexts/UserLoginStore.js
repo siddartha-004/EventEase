@@ -8,12 +8,14 @@ function UserLoginStore({ children }) {
     const [userLoginStatus, setUserLoginStatus] = useState(false);
 
     const logInUser = (userCredentialsObj) => {
-        axios.post("http://localhost:3000/user-api/login", userCredentialsObj)
+        console.log(userCredentialsObj)
+        axios.post("api/Student/login", userCredentialsObj)
             .then(response => {
-                if (response.data.message === "ok") {
+                console.log(response.data)
+                if (response.data.message === "Login successful") {
                     setUser({ ...response.data.user });
-                    localStorage.setItem("userId", response.data.user.userId);
-                    localStorage.setItem("token", response.data.token);
+                    localStorage.setItem("userId", response.data.user.id);
+                    //localStorage.setItem("token", response.data.token);
                     setLoginErr("");
                     setUserLoginStatus(true);
                 } else {
@@ -34,7 +36,10 @@ function UserLoginStore({ children }) {
         try {
             const userId = localStorage.getItem('userId');
             if (userId) {
-                const response = await axios.get(`http://localhost:3000/user-api/user/${userId}`);
+                console.log("hello")
+                const response = await axios.get(`api/Student/getuser?id=${userId}`);
+                console.log(response)
+                console.log("bye")
                 setUser(response.data.user);
             }
         } catch (error) {
@@ -44,7 +49,7 @@ function UserLoginStore({ children }) {
     
     useEffect(() => {
         getUser();
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('userId');
         if (token) {
             setUserLoginStatus(true);
         }

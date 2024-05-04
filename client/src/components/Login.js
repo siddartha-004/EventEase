@@ -13,7 +13,7 @@ export default function Login() {
   let [, loginErr, , logInUser, ] = useContext(LoginContext);
 
 
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('userId')
 
   let {
     register, 

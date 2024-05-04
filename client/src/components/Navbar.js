@@ -71,9 +71,12 @@ export default function Navbar() {
               {isLoggedIn ? 
               (<>
               <NavLink url="/events">Events</NavLink>
+              <NavLink url="/profile">Profile</NavLink>
+              <NavLink url="/contact">Contact</NavLink>
               <Link url="/" onClick={logOutUser}>Logout</Link>
               </>) : (<>
                   <NavLink url="/login">Login</NavLink>
+                  <NavLink url="/contact">Contact</NavLink>
                   <NavLink url="/register">Register</NavLink>
                 </>
               )}
